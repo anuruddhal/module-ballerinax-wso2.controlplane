@@ -279,10 +279,14 @@ modules = [
 [[package]]
 org = "ballerina"
 name = "task"
-version = "2.7.0"
+version = "2.10.0"
 dependencies = [
 	{org = "ballerina", name = "jballerina.java"},
-	{org = "ballerina", name = "time"}
+	{org = "ballerina", name = "time"},
+	{org = "ballerina", name = "uuid"}
+]
+modules = [
+	{org = "ballerina", packageName = "task", moduleName = "task"}
 ]
 
 [[package]]
@@ -328,6 +332,7 @@ dependencies = [
 	{org = "ballerina", name = "lang.runtime"},
 	{org = "ballerina", name = "log"},
 	{org = "ballerina", name = "os"},
+	{org = "ballerina", name = "task"},
 	{org = "ballerina", name = "uuid"}
 ]
 modules = [
