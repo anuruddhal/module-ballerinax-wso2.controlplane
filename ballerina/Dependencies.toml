@@ -9,18 +9,6 @@ distribution-version = "2201.12.2"
 
 [[package]]
 org = "ballerina"
-name = "auth"
-version = "2.14.0"
-dependencies = [
-	{org = "ballerina", name = "crypto"},
-	{org = "ballerina", name = "jballerina.java"},
-	{org = "ballerina", name = "lang.array"},
-	{org = "ballerina", name = "lang.string"},
-	{org = "ballerina", name = "log"}
-]
-
-[[package]]
-org = "ballerina"
 name = "cache"
 version = "3.10.0"
 dependencies = [
@@ -49,15 +37,6 @@ dependencies = [
 
 [[package]]
 org = "ballerina"
-name = "data.jsondata"
-version = "1.1.0"
-dependencies = [
-	{org = "ballerina", name = "jballerina.java"},
-	{org = "ballerina", name = "lang.object"}
-]
-
-[[package]]
-org = "ballerina"
 name = "file"
 version = "1.12.0"
 dependencies = [
@@ -68,39 +47,6 @@ dependencies = [
 ]
 modules = [
 	{org = "ballerina", packageName = "file", moduleName = "file"}
-]
-
-[[package]]
-org = "ballerina"
-name = "http"
-version = "2.14.2"
-dependencies = [
-	{org = "ballerina", name = "auth"},
-	{org = "ballerina", name = "cache"},
-	{org = "ballerina", name = "constraint"},
-	{org = "ballerina", name = "crypto"},
-	{org = "ballerina", name = "data.jsondata"},
-	{org = "ballerina", name = "file"},
-	{org = "ballerina", name = "io"},
-	{org = "ballerina", name = "jballerina.java"},
-	{org = "ballerina", name = "jwt"},
-	{org = "ballerina", name = "lang.array"},
-	{org = "ballerina", name = "lang.decimal"},
-	{org = "ballerina", name = "lang.int"},
-	{org = "ballerina", name = "lang.regexp"},
-	{org = "ballerina", name = "lang.runtime"},
-	{org = "ballerina", name = "lang.string"},
-	{org = "ballerina", name = "lang.value"},
-	{org = "ballerina", name = "log"},
-	{org = "ballerina", name = "mime"},
-	{org = "ballerina", name = "oauth2"},
-	{org = "ballerina", name = "observe"},
-	{org = "ballerina", name = "time"},
-	{org = "ballerina", name = "url"}
-]
-modules = [
-	{org = "ballerina", packageName = "http", moduleName = "http"},
-	{org = "ballerina", packageName = "http", moduleName = "http.httpscerr"}
 ]
 
 [[package]]
@@ -157,14 +103,6 @@ dependencies = [
 ]
 modules = [
 	{org = "ballerina", packageName = "lang.array", moduleName = "lang.array"}
-]
-
-[[package]]
-org = "ballerina"
-name = "lang.decimal"
-version = "0.0.0"
-dependencies = [
-	{org = "ballerina", name = "jballerina.java"}
 ]
 
 [[package]]
@@ -234,30 +172,6 @@ modules = [
 
 [[package]]
 org = "ballerina"
-name = "mime"
-version = "2.12.0"
-dependencies = [
-	{org = "ballerina", name = "io"},
-	{org = "ballerina", name = "jballerina.java"},
-	{org = "ballerina", name = "lang.int"},
-	{org = "ballerina", name = "log"}
-]
-
-[[package]]
-org = "ballerina"
-name = "oauth2"
-version = "2.14.0"
-dependencies = [
-	{org = "ballerina", name = "cache"},
-	{org = "ballerina", name = "crypto"},
-	{org = "ballerina", name = "jballerina.java"},
-	{org = "ballerina", name = "log"},
-	{org = "ballerina", name = "time"},
-	{org = "ballerina", name = "url"}
-]
-
-[[package]]
-org = "ballerina"
 name = "observe"
 version = "1.5.0"
 dependencies = [
@@ -299,14 +213,6 @@ dependencies = [
 
 [[package]]
 org = "ballerina"
-name = "url"
-version = "2.6.0"
-dependencies = [
-	{org = "ballerina", name = "jballerina.java"}
-]
-
-[[package]]
-org = "ballerina"
 name = "uuid"
 version = "1.10.0"
 dependencies = [
@@ -325,7 +231,6 @@ name = "wso2.controlplane"
 version = "1.1.0"
 dependencies = [
 	{org = "ballerina", name = "file"},
-	{org = "ballerina", name = "http"},
 	{org = "ballerina", name = "jballerina.java"},
 	{org = "ballerina", name = "jwt"},
 	{org = "ballerina", name = "lang.array"},
