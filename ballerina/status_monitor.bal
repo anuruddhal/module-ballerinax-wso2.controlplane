@@ -5,6 +5,6 @@ public type IntegrationStatus record {|
 
 public function getCurrentIntegrations() returns IntegrationStatus|error {
     // Implementation to get current integration statuses
-    Artifact[] allArtifacts = [...check getArtifacts("service", Artifact), ...check getArtifacts("listener", Artifact)];
+    Artifact[] allArtifacts = [...check getArtifacts("services", Artifact), ...check getArtifacts("listeners", Artifact)];
     return {artifacts: allArtifacts, node: check getBallerinaNode()};
 }
