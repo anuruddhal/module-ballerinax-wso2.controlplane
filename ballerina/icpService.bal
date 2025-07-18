@@ -14,47 +14,48 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/http;
+// import ballerina/http;
 import ballerina/jballerina.java;
-import ballerina/jwt;
 
-listener http:Listener securedEP = new (icpServicePort,
-    secureSocket = {
-        key: {
-            path: keyStorePath,
-            password: keyStorePassword
-        }
-    }
-);
+// import ballerina/jwt;
 
-service /management on securedEP {
+// listener http:Listener securedEP = new (icpServicePort,
+//     secureSocket = {
+//         key: {
+//             path: keyStorePath,
+//             password: keyStorePassword
+//         }
+//     }
+// );
 
-    isolated resource function get login(@http:Header string Authorization) returns AccessTokenResponse|error {
-        boolean isValid = check authenticateRequest(Authorization);
-        if (!isValid) {
-            return error http:ClientAuthError("Invalid credentials");
-        }
-        return {AccessToken: check generateJwtToken()};
-    }
+// service /management on securedEP {
 
-    isolated resource function get .(@http:Header string Authorization) returns Node|error {
-        _ = check jwt:validate(extractCredential(Authorization), validatorConfig);
-        return check getBallerinaNode();
-    }
+//     isolated resource function get login(@http:Header string Authorization) returns AccessTokenResponse|error {
+//         boolean isValid = check authenticateRequest(Authorization);
+//         if (!isValid) {
+//             return error http:ClientAuthError("Invalid credentials");
+//         }
+//         return {AccessToken: check generateJwtToken()};
+//     }
 
-    isolated resource function get [ArtifactType resourceType](string? name, @http:Header string Authorization)
-                                            returns Artifacts|ArtifactDetail|error {
-        _ = check jwt:validate(extractCredential(Authorization), validatorConfig);
-        if (name == ()) {
-            Artifact[] artifacts = check getArtifacts(resourceType, Artifact);
-            return {
-                count: artifacts.length(),
-                list: artifacts
-            };
-        }
-        return getDetailedArtifact(resourceType, name);
-    }
-}
+//     isolated resource function get .(@http:Header string Authorization) returns Node|error {
+//         _ = check jwt:validate(extractCredential(Authorization), validatorConfig);
+//         return check getBallerinaNode();
+//     }
+
+//     isolated resource function get [ArtifactType resourceType](string? name, @http:Header string Authorization)
+//                                             returns Artifacts|ArtifactDetail|error {
+//         _ = check jwt:validate(extractCredential(Authorization), validatorConfig);
+//         if (name == ()) {
+//             Artifact[] artifacts = check getArtifacts(resourceType, Artifact);
+//             return {
+//                 count: artifacts.length(),
+//                 list: artifacts
+//             };
+//         }
+//         return getDetailedArtifact(resourceType, name);
+//     }
+// }
 
 isolated function getBallerinaNode() returns Node|error = @java:Method {
     'class: "io.ballerina.lib.wso2.controlplane.Utils"

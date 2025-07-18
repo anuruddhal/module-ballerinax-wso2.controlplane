@@ -53,13 +53,13 @@ final jwt:ValidatorConfig & readonly validatorConfig = {
     }
 };
 
-isolated function authenticateRequest(string credential) returns boolean|error {
-    [string, string] [username, password] = check extractUsernameAndPassword(extractCredential(credential));
-    if (username == dashboard.serviceAccount && password == dashboard.serviceAccountPassword) {
-        return true;
-    }
-    return false;
-}
+// isolated function authenticateRequest(string credential) returns boolean|error {
+//     [string, string] [username, password] = check extractUsernameAndPassword(extractCredential(credential));
+//     if (username == dashboard.serviceAccount && password == dashboard.serviceAccountPassword) {
+//         return true;
+//     }
+//     return false;
+// }
 
 isolated function extractUsernameAndPassword(string credential) returns [string, string]|error {
     byte[]|error base64Decoded = 'array:fromBase64(credential);

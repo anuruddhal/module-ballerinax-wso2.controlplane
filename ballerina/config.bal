@@ -17,7 +17,7 @@
 import ballerina/file;
 import ballerina/os;
 
-configurable DashBoard dashboard = ?;
+// configurable DashBoard dashboard = ?;
 configurable string keyStorePath = check getDefaultKeyStore();
 configurable string keyStorePassword = "ballerina";
 configurable string trustStorePath = check getDefaultTrustStore();

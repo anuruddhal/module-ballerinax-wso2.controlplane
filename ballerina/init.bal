@@ -14,53 +14,53 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/http;
-import ballerina/lang.runtime;
-import ballerina/log;
+// import ballerina/http;
+// import ballerina/lang.runtime;
+// import ballerina/log;
 
-function init() returns error? {
-    worker w1 returns error? {
-        check registerInDashboardServer();
-    }
-}
+// function init() returns error? {
+//     worker w1 returns error? {
+//         check registerInDashboardServer();
+//     }
+// }
 
-function registerInDashboardServer() returns error? {
-    if dashboard.url == "" {
-        return;
-    }
-    // We need to wait until services are up
-    runtime:sleep(dashboard.waitTimeForServicesInSeconds);
-    http:Client dsClient = check new (dashboard.url,
-        secureSocket = {
-            enable: false
-        }
-    );
+// function registerInDashboardServer() returns error? {
+//     if dashboard.url == "" {
+//         return;
+//     }
+//     // We need to wait until services are up
+//     runtime:sleep(dashboard.waitTimeForServicesInSeconds);
+//     http:Client dsClient = check new (dashboard.url,
+//         secureSocket = {
+//             enable: false
+//         }
+//     );
 
-    IntegrationPlaneConnectionRequest connectionRequest = {
-        groupId: dashboard.groupId,
-        nodeId: dashboard.nodeId,
-        interval: dashboard.heartbeatInterval,
-        mgtApiUrl: dashboard.mgtApiUrl
-    };
+//     IntegrationPlaneConnectionRequest connectionRequest = {
+//         groupId: dashboard.groupId,
+//         nodeId: dashboard.nodeId,
+//         interval: dashboard.heartbeatInterval,
+//         mgtApiUrl: dashboard.mgtApiUrl
+//     };
 
-    boolean isFailed = true;
-    while (true) {
-        http:Response|http:ClientError resp = dsClient->post("/heartbeat", connectionRequest);
-        if (resp is http:ClientError) {
-            log:printError(string `Connection to dashboard server ${dashboard.url} is failed due to http error ${resp.toString()}. Retrying after ${dashboard.heartbeatInterval} seconds.`);
-            isFailed = true;
-        } else if (resp.statusCode != 200) {
-            string|http:ClientError textPayload = resp.getTextPayload();
-            if textPayload is string {
-                log:printError(string `Connection to dashboard server ${dashboard.url} is failed due to ${textPayload} with error code ${resp.statusCode}. Retrying after ${dashboard.heartbeatInterval} seconds.`);
-            } else {
-                log:printError(string `Connection to dashboard server ${dashboard.url} is failed due to client error ${textPayload.message()}. Retrying after ${dashboard.heartbeatInterval} seconds.`);
-            }
-            isFailed = true;
-        } else if (isFailed) {
-            log:printInfo(string `Connected to dashboard server ${dashboard.url}`);
-            isFailed = false;
-        }
-        runtime:sleep(<decimal>dashboard.heartbeatInterval);
-    }
-}
+//     boolean isFailed = true;
+//     while (true) {
+//         http:Response|http:ClientError resp = dsClient->post("/heartbeat", connectionRequest);
+//         if (resp is http:ClientError) {
+//             log:printError(string `Connection to dashboard server ${dashboard.url} is failed due to http error ${resp.toString()}. Retrying after ${dashboard.heartbeatInterval} seconds.`);
+//             isFailed = true;
+//         } else if (resp.statusCode != 200) {
+//             string|http:ClientError textPayload = resp.getTextPayload();
+//             if textPayload is string {
+//                 log:printError(string `Connection to dashboard server ${dashboard.url} is failed due to ${textPayload} with error code ${resp.statusCode}. Retrying after ${dashboard.heartbeatInterval} seconds.`);
+//             } else {
+//                 log:printError(string `Connection to dashboard server ${dashboard.url} is failed due to client error ${textPayload.message()}. Retrying after ${dashboard.heartbeatInterval} seconds.`);
+//             }
+//             isFailed = true;
+//         } else if (isFailed) {
+//             log:printInfo(string `Connected to dashboard server ${dashboard.url}`);
+//             isFailed = false;
+//         }
+//         runtime:sleep(<decimal>dashboard.heartbeatInterval);
+//     }
+// }

@@ -31,6 +31,7 @@ import io.ballerina.runtime.api.values.BObject;
 import io.ballerina.runtime.api.values.BString;
 import io.ballerina.runtime.api.values.BTypedesc;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,8 +39,8 @@ import java.util.Map;
 
 import static io.ballerina.lib.wso2.controlplane.Constants.BALLERINA;
 import static io.ballerina.lib.wso2.controlplane.Constants.LISTENER;
-import static io.ballerina.lib.wso2.controlplane.Constants.SERVICES_RESOURCE;
 import static io.ballerina.lib.wso2.controlplane.Constants.SERVICE;
+import static io.ballerina.lib.wso2.controlplane.Constants.SERVICES_RESOURCE;
 
 /**
  * Native function implementations of the wso2 control plane module.
@@ -62,6 +63,13 @@ public class Artifacts {
     }
 
     public static Object getArtifacts(Environment env, BString resourceType, BTypedesc typedesc) {
+        PrintStream out = System.out;
+        out.println("getArtifacts called with resourceType: " + resourceType.getValue() +
+                " and typedesc: " + typedesc.getDescribingType());
+        out.println("Count" + env.getRepository().getArtifacts().size());
+        env.getRepository().getArtifacts().forEach(artifact -> {
+            out.println("Artifact: " + artifact.name + ", Type: " + artifact.type);
+        });
         artifacts = filterHttpArtifacts(env.getRepository().getArtifacts());
         currentModule = env.getCurrentModule();
         populateArtifactNamesMap();

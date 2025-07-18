@@ -14,7 +14,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/uuid;
+// import ballerina/uuid;
 
 type IntegrationPlaneConnectionRequest record {
     string product = "bal";
@@ -39,16 +39,16 @@ type AccessTokenResponse record {|
     string AccessToken;
 |};
 
-type DashBoard record {
-    string url;
-    int heartbeatInterval = 10;
-    decimal waitTimeForServicesInSeconds = 5;
-    string groupId;
-    string nodeId = uuid:createType4AsString();
-    string mgtApiUrl;
-    string serviceAccount = "bal_admin";
-    string serviceAccountPassword = "bal_secret";
-};
+// type DashBoard record {
+//     string url;
+//     int heartbeatInterval = 10;
+//     decimal waitTimeForServicesInSeconds = 5;
+//     string groupId;
+//     string nodeId = uuid:createType4AsString();
+//     string mgtApiUrl;
+//     string serviceAccount = "bal_admin";
+//     string serviceAccountPassword = "bal_secret";
+// };
 
 # Represents a list of artifacts in a Ballerina node.
 #
@@ -127,8 +127,8 @@ public type ListenerDetail record {
 # + osVersion - the operating system version.
 public type Node record {
     string platformName = "ballerina";
-    string? platformVersion;
-    string? ballerinaHome;
-    string? osName;
-    string? osVersion;
+    string platformVersion?;
+    string ballerinaHome?;
+    string osName?;
+    string osVersion?;
 };
